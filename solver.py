@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.interpolate import interp1d
 
 def calcular_trayectoria(v, ha, hc, alpha, d, L, g=9.81):
     """
@@ -31,12 +32,34 @@ def calcular_trayectoria(v, ha, hc, alpha, d, L, g=9.81):
     x = x0 +v * t  # Posición horizontal
     y = ha - 0.5 * g * t**2  # Posición vertical
     
+    # # Verificar si la bomba impacta el cañón
+    # impacto_x = x[(x >= d) & (x <= d + L)]
+    # impacto_y = y[(x >= d) & (x <= d + L)]
+    # if any((impacto_y <= 0) & (impacto_y >= -hc)):
+    #     print("¡Impacto exitoso en el cañón!")
+    # else:
+    #     print("La bomba no impacta en el cañón.")
+        
+    # return x, y
+    
     # Verificar si la bomba impacta el cañón
-    impacto_x = x[(x >= d) & (x <= d + L)]
-    impacto_y = y[(x >= d) & (x <= d + L)]
-    if any((impacto_y <= 0) & (impacto_y >= -hc)):
-        print("¡Impacto exitoso en el cañón!")
+    # Usar interpolación para encontrar el impacto exacto
+    if np.any((x >= d) & (x <= d + L)):
+        # Encontrar índices relevantes para la interpolación
+        indices = np.where((x >= d) & (x <= d + L))[0]
+        x_relevante = x[indices]
+        y_relevante = y[indices]
+
+        # Interpolador lineal para encontrar el punto exacto
+        interpolador = interp1d(y_relevante, x_relevante, kind="linear", fill_value="extrapolate")
+        impacto_x = interpolador(-hc)  # Calcular x cuando y = -hc
+        
+        if d <= impacto_x <= d + L:
+            print(f"¡Impacto exitoso en el cañón! Punto de impacto: x = {impacto_x:.2f}, y = {-hc:.2f}")
+        else:
+            print("La bomba pasa fuera del cañón.")
     else:
         print("La bomba no impacta en el cañón.")
-        
+    
     return x, y
+

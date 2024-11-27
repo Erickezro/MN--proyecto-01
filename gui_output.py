@@ -5,30 +5,35 @@ import numpy as np
 
 def mostrar_resultados(v, ha, hc, alpha, d, L):
     x, y = calcular_trayectoria(v, ha, hc, alpha, d, L)
+    
+    # Coordenadas del cañón
+    h_canon = -hc  # Altura negativa para estar debajo del suelo
+    inclinacion = np.tan(np.radians(alpha)) * hc  # Proyección horizontal del ángulo
+    base_superior = d
+    base_inferior = d + L
+    
+    # Coordenadas del trapecio isósceles invertido
+    x_trapecio = [base_superior - inclinacion, base_inferior + inclinacion, base_inferior, base_superior]
+    y_trapecio = [0, 0, h_canon, h_canon]
+    
+    # Determinar límites del gráfico para incluir todo el cañón
+    x_min = min(min(x), base_superior - inclinacion) - 10
+    x_max = max(max(x), base_inferior + inclinacion) + 10
+    y_min = min(min(y), h_canon) - 10
+    y_max = max(max(y), ha) + 10
 
     # Configurar la figura
     fig, ax = plt.subplots()
-    ax.set_xlim(0, max(x) + 10)
-    #ax.set_ylim(0, max(ha, hc) + 10)
-    ax.set_ylim(-hc - 10, max(ha, hc) + 10)
-    plt.axhline(0, color="black", linestyle="-", label="suelo")
+    ax.set_xlim(x_min, x_max)
+    ax.set_ylim(y_min, y_max)
+    
+    ax.axhline(0, color="black", linestyle="-", label="suelo")
     ax.set_title("Trayectoria de la bomba")
     ax.set_xlabel("Distancia (m)")
     ax.set_ylabel("Altura (m)")
 
     # Línea para la trayectoria
     linea, = ax.plot([], [], label="Trayectoria", lw=2)
-    ax.legend()
-    
-    # Calcular las coordenadas del cañón
-    h_canon = -hc  # Por debajo del eje y = 0
-    base_superior = d
-    base_inferior = d + L
-    inclinacion = np.tan(np.radians(alpha)) * hc #horizontal por altura y el angulo
-    
-    # Coordenadas del trapecio isósceles invertido
-    x_trapecio = [d - inclinacion, d + L + inclinacion, d + L, d]
-    y_trapecio = [0, 0, h_canon, h_canon]
 
     # Dibujar el cañón como un trapecio
     ax.fill(x_trapecio, y_trapecio, color='brown', alpha=0.7, label="Cañón")
@@ -41,5 +46,5 @@ def mostrar_resultados(v, ha, hc, alpha, d, L):
     # Animación
     anim = FuncAnimation(fig, actualizar, frames=len(x), interval=20, blit=True)
 
-    plt.legend()
+    ax.legend()
     plt.show()
