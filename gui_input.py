@@ -12,7 +12,7 @@ def bienvenida():
     # Estilo de la ventana
     style = ttk.Style()
     style.theme_use("default")
-    style.configure("Blue.TLabel", background="#f0f4f8", foreground="#003366", font=("Arial", 12))
+    style.configure("Blue.TLabel", background="#f0f4f8", foreground="#003366", font=("Arial", 14))
     style.configure("Blue.TButton", background="#003366", foreground="white", font=("Arial", 12, "bold"))
     style.map("Blue.TButton", background=[("active", "#00509e")])  # Color al hacer clic
     style.configure("Blue.TFrame", background="#f0f4f8")
@@ -28,14 +28,14 @@ def bienvenida():
 
     # Etiquetas centradas
     label_uni = ttk.Label(frame, text=f"Universidad: {info}", style="Blue.TLabel")
-    label_uni.pack(pady=10)
+    label_uni.pack(pady=20)
 
     for integrante in integrantes:
         label_integrante = ttk.Label(frame, text=f"Integrante: {integrante}", style="Blue.TLabel")
-        label_integrante.pack(pady=5)
+        label_integrante.pack(pady=10)
 
     label_tema = ttk.Label(frame, text=f"Tema: {tema}", style="Blue.TLabel", wraplength=500, justify="center")
-    label_tema.pack(pady=10)
+    label_tema.pack(pady=20)
 
     # Botón al final
     btn_ingreso = ttk.Button(frame, text="Ir a ingreso de datos", style="Blue.TButton",command=lambda: [ventana.destroy(), abrir_interfaz()])
