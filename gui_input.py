@@ -5,7 +5,7 @@ from gui_output import mostrar_resultados
 
 def abrir_interfaz():
     root = tk.Tk()
-    root.configure(bg="green")
+    root.configure(bg="#f0f4f8")
     root.title("Simulación de Trayectoria de la Bomba")
 
     # Configurar el tamaño de la ventana
@@ -14,18 +14,19 @@ def abrir_interfaz():
 
     # Estilo
     style = ttk.Style()
-    style.theme_use("default")  # Usar un tema que permita personalización completa
-    style.configure("Green.TLabel", background="green", foreground="white")
-    style.configure("Green.TButton", background="green", foreground="white")
-    style.configure("Green.TFrame", background="green")
+    style.theme_use("default") 
+    style.configure("Blue.TLabel", background="#f0f4f8", foreground="#003366", font=("Arial", 10))
+    style.configure("Blue.TButton", background="#003366", foreground="white", font=("Arial", 10, "bold"))
+    style.map("Blue.TButton", background=[("active", "#00509e")])  # Color al hacer clic
+    style.configure("Blue.TFrame", background="#f0f4f8")
 
     # Título
     titulo = tk.Label(
         root,
         text="Simulación de la trayectoria de la bomba",
         font=("Arial", 16, "bold"),
-        bg="green",
-        fg="white"
+        bg="#f0f4f8",
+        fg="#003366"
     )
     titulo.pack(pady=6)
 
@@ -36,7 +37,7 @@ def abrir_interfaz():
         img_tk = ImageTk.PhotoImage(img)
 
         # Mostrar la imagen en la interfaz
-        img_label = tk.Label(root, image=img_tk, bg="green")
+        img_label = tk.Label(root, image=img_tk, bg="#f0f4f8")
         img_label.image = img_tk  # Mantener referencia para evitar recolección de basura
         img_label.pack(pady=(5, 5))
     except Exception as e:
@@ -46,8 +47,8 @@ def abrir_interfaz():
         root,
         text="Por favor, ingrese los datos requeridos:",
         font=("Arial", 14, "bold"),
-        bg="green",
-        fg="white"
+        bg="#f0f4f8",
+        fg="#003366"
     )
     texto_datos.pack(pady=(5, 10))
 
@@ -60,7 +61,7 @@ def abrir_interfaz():
     longitud = tk.StringVar()
 
     # Frame para entradas
-    frame = ttk.Frame(root, style="Green.TFrame")
+    frame = ttk.Frame(root, style="Blue.TFrame")
     frame.pack(pady=3)
 
     # Etiquetas y campos de entrada
@@ -74,10 +75,10 @@ def abrir_interfaz():
     ]
 
     for i, (etiqueta, variable) in enumerate(entradas):
-        ttk.Label(frame, text=etiqueta, style="Green.TLabel").grid(
+        ttk.Label(frame, text=etiqueta, style="Blue.TLabel").grid(
             row=i, column=0, padx=5, pady=3, sticky="w"
         )
-        tk.Entry(frame, textvariable=variable, bg="green", fg="white", insertbackground="white").grid(
+        tk.Entry(frame, textvariable=variable, bg="white", fg="#003366", insertbackground="#003366").grid(
             row=i, column=1, padx=5, pady=3
         )
 
@@ -102,7 +103,7 @@ def abrir_interfaz():
             messagebox.showerror("Error", f"Entrada inválida: {e}")
 
     # Botón
-    ttk.Button(root, text="Siguiente", command=procesar_datos, style="Green.TButton").pack(pady=20)
+    ttk.Button(root, text="Siguiente", command=procesar_datos, style="Blue.TButton").pack(pady=20)
 
     # Iniciar aplicación
     root.mainloop()
