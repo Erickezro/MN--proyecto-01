@@ -3,6 +3,46 @@ from tkinter import ttk, messagebox
 from PIL import Image, ImageTk  # Para manejar imágenes
 from gui_output import mostrar_resultados
 
+def bienvenida():
+    ventana = tk.Tk()
+    ventana.title("Información del Proyecto")
+    ventana.geometry("600x650")  # Tamaño fijo
+    ventana.resizable(False, False)
+
+    # Estilo de la ventana
+    style = ttk.Style()
+    style.theme_use("default")
+    style.configure("Blue.TLabel", background="#f0f4f8", foreground="#003366", font=("Arial", 10))
+    style.configure("Blue.TButton", background="#003366", foreground="white", font=("Arial", 10, "bold"))
+    style.map("Blue.TButton", background=[("active", "#00509e")])  # Color al hacer clic
+    style.configure("Blue.TFrame", background="#f0f4f8")
+
+    # Contenedor principal
+    frame = ttk.Frame(ventana, style="Blue.TFrame")
+    frame.pack(fill="both", expand=True, padx=20, pady=20)
+
+    # Información requerida
+    info = "Escuela Politécnica Nacional"
+    integrantes = ["Alexis Bautista", "David Egas", "Aubertin Ochoa", "Erick Romero"]
+    tema = "Simulación de la caída de una bomba"
+
+    # Etiquetas centradas
+    label_uni = ttk.Label(frame, text=f"Universidad: {info}", style="Blue.TLabel")
+    label_uni.pack(pady=10)
+
+    for integrante in integrantes:
+        label_integrante = ttk.Label(frame, text=f"Integrante: {integrante}", style="Blue.TLabel")
+        label_integrante.pack(pady=5)
+
+    label_tema = ttk.Label(frame, text=f"Tema: {tema}", style="Blue.TLabel", wraplength=500, justify="center")
+    label_tema.pack(pady=10)
+
+    # Botón al final
+    btn_ingreso = ttk.Button(frame, text="Ir a ingreso de datos", style="Blue.TButton",command=lambda: [ventana.destroy(), abrir_interfaz()])
+    btn_ingreso.pack(pady=20)
+
+    ventana.mainloop()
+        
 def abrir_interfaz():
     root = tk.Tk()
     root.configure(bg="#f0f4f8")
@@ -101,7 +141,6 @@ def abrir_interfaz():
 
         except ValueError as e:
             messagebox.showerror("Error", f"Entrada inválida: {e}")
-
     # Botón
     ttk.Button(root, text="Siguiente", command=procesar_datos, style="Blue.TButton").pack(pady=20)
 

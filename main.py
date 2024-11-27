@@ -1,5 +1,6 @@
-from gui_input import abrir_interfaz
+from gui_input import abrir_interfaz, bienvenida
 
 if __name__ == "__main__":
-    abrir_interfaz()
+    bienvenida()
+    #abrir_interfaz()
  
