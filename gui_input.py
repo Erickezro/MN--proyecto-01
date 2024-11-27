@@ -12,8 +12,8 @@ def bienvenida():
     # Estilo de la ventana
     style = ttk.Style()
     style.theme_use("default")
-    style.configure("Blue.TLabel", background="#f0f4f8", foreground="#003366", font=("Arial", 10))
-    style.configure("Blue.TButton", background="#003366", foreground="white", font=("Arial", 10, "bold"))
+    style.configure("Blue.TLabel", background="#f0f4f8", foreground="#003366", font=("Arial", 12))
+    style.configure("Blue.TButton", background="#003366", foreground="white", font=("Arial", 12, "bold"))
     style.map("Blue.TButton", background=[("active", "#00509e")])  # Color al hacer clic
     style.configure("Blue.TFrame", background="#f0f4f8")
 
