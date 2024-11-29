@@ -21,6 +21,20 @@ def bienvenida():
     frame = ttk.Frame(ventana, style="Blue.TFrame")
     frame.pack(fill="both", expand=True, padx=20, pady=20)
 
+
+    # Cargar la imagen
+    try:
+        img = Image.open("imagenAvion.jpg")  # Reemplaza "logo.png" con la ruta de tu imagen
+        img = img.resize((150, 150))  # Redimensionar si es necesario
+        img_tk = ImageTk.PhotoImage(img)
+
+        # Mostrar la imagen en un Label
+        img_label = tk.Label(frame, image=img_tk, bg="#f0f4f8")
+        img_label.image = img_tk  # Mantener referencia para evitar que el recolector de basura la elimine
+        img_label.pack(pady=(10, 20))  # Añade espacio entre la imagen y el texto
+    except Exception as e:
+        messagebox.showerror("Error", f"No se pudo cargar la imagen: {e}")
+
     # Información requerida
     info = "Escuela Politécnica Nacional"
     integrantes = ["Alexis Bautista", "David Egas", "Aubertin Ochoa", "Erick Romero"]
@@ -145,7 +159,7 @@ def abrir_interfaz():
             if not (0 < alpha < 90):
                     raise ValueError("El ángulo debe estar entre 0° y 90°.")
             if d < 0:
-                    raise ValueError("La distancia al cañón no puede ser negativa.")
+                    raise ValueError("La distancia al cañón no puede ser negativa.") #Dado que se supone que va en una direccion, y eso no se puede alterar
             if L <= 0:
                     raise ValueError("La longitud del cañón debe ser mayor que 0.")
 
