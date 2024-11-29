@@ -65,6 +65,7 @@ def bienvenida():
     btn_ingreso.pack(pady=20)
 
     ventana.mainloop()
+    ##linea de prueba para la subida sin realizar cambios en el codigo (solo para probar el funcionamiento de la subida)
 
         
         
