@@ -41,11 +41,13 @@ def bienvenida():
     tema = "Simulación de la caída de una bomba"
 
     # Etiquetas centradas
-    label_uni = ttk.Label(frame, text=f"Universidad: {info}", style="Blue.TLabel")
+    label_uni = ttk.Label(frame, text=f"{info}", style="Blue.TLabel")
     label_uni.pack(pady=20)
+    label_Interantes= ttk.Label(frame, text="Integrantes:", style="Blue.TLabel")
+    label_Interantes.pack(pady=10)
 
     for integrante in integrantes:
-        label_integrante = ttk.Label(frame, text=f"Integrante: {integrante}", style="Blue.TLabel")
+        label_integrante = ttk.Label(frame, text=f"{integrante}", style="Blue.TLabel")
         label_integrante.pack(pady=10)
 
     label_tema = ttk.Label(frame, text=f"Tema: {tema}", style="Blue.TLabel", wraplength=500, justify="center")
