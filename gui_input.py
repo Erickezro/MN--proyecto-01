@@ -132,9 +132,23 @@ def abrir_interfaz():
             d = float(distancia.get())
             L = float(longitud.get())
 
-            if v <= 0 or ha <= 0 or hc <= 0 or L <= 0 or d < 0:
-                raise ValueError("Todos los valores deben ser positivos.")
-            
+            # if v <= 0 or ha <= 0 or hc <= 0 or L <= 0 or d < 0:
+            #     raise ValueError("Todos los valores deben ser positivos.")
+              
+            #Validaciones
+            if v <= 0:
+                    raise ValueError("La velocidad debe ser mayor que 0.")
+            if ha <= 0:
+                    raise ValueError("La altura del avión debe ser mayor que 0.")
+            if hc <= 0:
+                    raise ValueError("La altura del cañón debe ser mayor que 0.")
+            if not (0 < alpha < 90):
+                    raise ValueError("El ángulo debe estar entre 0° y 90°.")
+            if d < 0:
+                    raise ValueError("La distancia al cañón no puede ser negativa.")
+            if L <= 0:
+                    raise ValueError("La longitud del cañón debe ser mayor que 0.")
+
             root.withdraw()
             # Llamar a la siguiente ventana
             mostrar_resultados(v, ha, hc, alpha, d, L)
