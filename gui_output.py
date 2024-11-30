@@ -12,7 +12,7 @@ def mostrar_resultados(v, ha, hc, alpha, d, L):
     Grafica la trayectoria de la bomba y verifica el impacto.
     """
     x, y, impacto = calcular_trayectoria(v, ha, hc, alpha, d, L)
-    
+
     # Convert the angle to radians
     alpha_rad = np.radians(alpha)
     inclinacion = np.tan(np.radians(alpha)) * hc  # Proyección horizontal del ángulo
@@ -22,8 +22,8 @@ def mostrar_resultados(v, ha, hc, alpha, d, L):
     d2 = d + (base_mayor / 2) - 50
     
     # Coordenadas del trapecio isósceles invertido
-    x_trapecio = [d2, d2+base_mayor, d2+ca, d2+ca+L]
-    y_trapecio = [0, 0, -hc, -hc]
+    x_trapecio = [d2, d2 + L, d2 + L + hc * np.tan(alpha_rad), d2 - hc * np.tan(alpha_rad)]
+    y_trapecio = [-hc, -hc, 0, 0]
     
     # Configurar la figura
     fig, ax = plt.subplots()
