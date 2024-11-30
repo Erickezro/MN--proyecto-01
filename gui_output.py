@@ -15,7 +15,7 @@ def mostrar_resultados(v, ha, hc, alpha, d, L):
     
     # Convert the angle to radians
     alpha_rad = np.radians(alpha)
-    inclinacion = np.tan(np.radians(alpha)) * hc  # Proyección horizontal del ángulo
+    inclinacion = np.tan(np.radians(alpha)) / hc  # Proyección horizontal del ángulo
 
     # Calculate the larger base
     base_mayor = L + 2 * hc * np.tan(alpha_rad)
