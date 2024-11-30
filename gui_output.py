@@ -15,11 +15,10 @@ def mostrar_resultados(v, ha, hc, alpha, d, L):
     alpha_rad = np.radians(alpha)
     inclinacion = np.tan(np.radians(alpha)) * hc  # Proyección horizontal del ángulo
 
-     # Calculate the larger base
+    # Calculate the larger base
     base_mayor = L + 2 * hc * np.tan(alpha_rad)
-    d2=d+(base_mayor/2)-50
+    d2 = d + (base_mayor / 2) - 50
     
-    # Coordenadas del trapecio isósceles invertido
     # Coordenadas del trapecio isósceles invertido
     x_trapecio = [d2, d2 + L, d2 + L + hc * np.tan(alpha_rad), d2 - hc * np.tan(alpha_rad)]
     y_trapecio = [-hc, -hc, 0, 0]
@@ -42,11 +41,12 @@ def mostrar_resultados(v, ha, hc, alpha, d, L):
         linea.set_data(x[:i], y[:i])
         return linea,
 
-    anim = FuncAnimation(fig, actualizar, frames=len(x), interval=20, blit=True)
+    # Crear la animación con repeat=False
+    anim = FuncAnimation(fig, actualizar, frames=len(x), interval=20, blit=True, repeat=False)
     ax.legend()
     plt.show()
 
-    # Mostrar mensaje de impacto
+    # Mostrar mensaje de impacto después de la animación
     if impacto[0]:
         if impacto[2] == 0:
             messagebox.showinfo("Resultado", f"La bomba impactó en el suelo en x = {impacto[1]:.2f} m.")
