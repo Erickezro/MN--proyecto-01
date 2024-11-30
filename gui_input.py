@@ -173,6 +173,3 @@ def abrir_interfaz():
 
     # Iniciar aplicación
     root.mainloop()
-
-    
- 
