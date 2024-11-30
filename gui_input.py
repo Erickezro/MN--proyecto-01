@@ -46,7 +46,7 @@ def bienvenida():
 
     # Integrantes al final
     titulo_Integrantes="Integrantes:"
-    ttk.Label(frame, text=f"{titulo_Interantes}", style="Blue.TLabel", wraplength=500, justify="center").pack(pady=(10, 20))
+    ttk.Label(frame, text=f"{titulo_Integrantes}", style="Blue.TLabel", wraplength=500, justify="center").pack(pady=(10, 20))
     integrantes = ["Alexis Bautista", "David Egas", "Aubertin Ochoa", "Erick Romero" ] 
     
 
