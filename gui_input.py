@@ -7,7 +7,7 @@ from gui_output import mostrar_resultados
 def bienvenida():
     ventana = tk.Tk()
     ventana.title("Información del Proyecto")
-    ventana.geometry("600x750")
+    ventana.geometry("600x650")
     ventana.resizable(False, False)
 
     # color de fondo
@@ -27,16 +27,16 @@ def bienvenida():
 
     # Universidad al principio
     info = "Escuela Politécnica Nacional"
-    ttk.Label(frame, text=f"Universidad: {info}", style="Blue.TLabel").pack(pady=(20, 10))
+    ttk.Label(frame, text=f"{info}", style="Blue.TLabel").pack(pady=(20, 10))
 
     # Tema después de la universidad
     tema = "Simulación de la caída de una bomba"
-    ttk.Label(frame, text=f"Tema: {tema}", style="Blue.TLabel", wraplength=500, justify="center").pack(pady=(10, 20))
+    ttk.Label(frame, text=f"{tema}", style="Blue.TLabel", wraplength=500, justify="center").pack(pady=(10, 20))
 
     # Imagen al centro
     try:
         img = Image.open("imagenAvion.jpg")  # Cambia "imagenAvion.jpg" por tu imagen
-        img = img.resize((300, 300))
+        img = img.resize((200, 100))
         img_tk = ImageTk.PhotoImage(img)
 
         img_label = tk.Label(frame, image=img_tk, bg="#e6f7ff")
@@ -46,10 +46,13 @@ def bienvenida():
         messagebox.showerror("Error", f"No se pudo cargar la imagen: {e}")
 
     # Integrantes al final
+    titulo_Interantes="Interantes:"
+    ttk.Label(frame, text=f"{titulo_Interantes}", style="Blue.TLabel", wraplength=500, justify="center").pack(pady=(10, 20))
     integrantes = ["Alexis Bautista", "David Egas", "Aubertin Ochoa", "Erick Romero" ] #
+    
 
     for integrante in integrantes:
-        label_integrante = ttk.Label(frame, text=f"Integrante: {integrante}", style="Blue.TLabel")
+        label_integrante = ttk.Label(frame, text=f"{integrante}", style="Blue.TLabel")
         label_integrante.pack(pady=10)
 
     # Botón llamativo
@@ -64,7 +67,7 @@ def abrir_interfaz():
     root.title("Simulación de Trayectoria de la Bomba")
 
     # Configurar el tamaño de la ventana
-    root.geometry("600x750")  # Ampliar espacio vertical para que quepa el botón
+    root.geometry("600x650")  
     root.resizable(False, False)
 
     # Estilo
