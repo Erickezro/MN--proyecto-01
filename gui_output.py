@@ -1,8 +1,10 @@
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-from solver import calcular_trayectoria
 import numpy as np
 from tkinter import messagebox
+
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+from solver import calcular_trayectoria
 
 # Actualización de mostrar_resultados
 def mostrar_resultados(v, ha, hc, alpha, d, L):
@@ -38,6 +40,15 @@ def mostrar_resultados(v, ha, hc, alpha, d, L):
     
     # Actualizar la animación
     def actualizar(i):
+        """
+        Actualiza la línea de la trayectoria en cada frame de la animación.
+
+        Parameters:
+        i (int): El índice del frame actual de la animación.
+
+        Returns:
+        tuple: Una tupla que contiene la línea actualizada.
+        """
         linea.set_data(x[:i], y[:i])
         return linea,
 

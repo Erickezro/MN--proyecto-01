@@ -29,7 +29,6 @@ def bienvenida():
     info = "Escuela Politécnica Nacional"
     ttk.Label(frame, text=f"{info}", style="Blue.TLabel").pack(pady=(20, 10))
 
-    # Tema después de la universidad
     tema = "Simulación de la caída de una bomba"
     ttk.Label(frame, text=f"{tema}", style="Blue.TLabel", wraplength=500, justify="center").pack(pady=(10, 20))
 
@@ -46,8 +45,8 @@ def bienvenida():
         messagebox.showerror("Error", f"No se pudo cargar la imagen: {e}")
 
     # Integrantes al final
-    titulo_Interantes="Interantes:"
-    ttk.Label(frame, text=f"{titulo_Interantes}", style="Blue.TLabel", wraplength=500, justify="center").pack(pady=(10, 20))
+    titulo_Integrantes="Integrantes:"
+    ttk.Label(frame, text=f"{titulo_Integrantes}", style="Blue.TLabel", wraplength=500, justify="center").pack(pady=(10, 20))
     integrantes = ["Alexis Bautista", "David Egas", "Aubertin Ochoa", "Erick Romero" ] 
     
 
