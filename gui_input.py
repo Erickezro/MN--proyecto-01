@@ -5,13 +5,13 @@ from gui_output import mostrar_resultados
 
 # Modificar estilo y disposición
 def bienvenida():
-    ventana = tk.Tk()
-    ventana.title("Información del Proyecto")
-    ventana.geometry("600x650")
-    ventana.resizable(False, False)
+    ventana_nombres = tk.Tk()
+    ventana_nombres.title("Información del Proyecto")
+    ventana_nombres.geometry("600x650")
+    ventana_nombres.resizable(False, False)
 
     # color de fondo
-    ventana.configure(bg="#e6f7ff")
+    ventana_nombres.configure(bg="#e6f7ff")
 
     # Estilo
     style = ttk.Style()
@@ -22,7 +22,7 @@ def bienvenida():
     style.map("Blue.TButton", background=[("active", "#00509e")])
 
     # Contenedor principal
-    frame = ttk.Frame(ventana, style="Blue.TLabel")
+    frame = ttk.Frame(ventana_nombres, style="Blue.TLabel")
     frame.pack(fill="both", expand=True, padx=20, pady=20)
 
     # Universidad al principio
@@ -35,7 +35,7 @@ def bienvenida():
 
     # Imagen al centro
     try:
-        img = Image.open("imagenAvion.jpg")  # Cambia "imagenAvion.jpg" por tu imagen
+        img = Image.open("imagenAvion.jpg")  
         img = img.resize((200, 100))
         img_tk = ImageTk.PhotoImage(img)
 
@@ -48,7 +48,7 @@ def bienvenida():
     # Integrantes al final
     titulo_Interantes="Interantes:"
     ttk.Label(frame, text=f"{titulo_Interantes}", style="Blue.TLabel", wraplength=500, justify="center").pack(pady=(10, 20))
-    integrantes = ["Alexis Bautista", "David Egas", "Aubertin Ochoa", "Erick Romero" ] #
+    integrantes = ["Alexis Bautista", "David Egas", "Aubertin Ochoa", "Erick Romero" ] 
     
 
     for integrante in integrantes:
@@ -56,31 +56,31 @@ def bienvenida():
         label_integrante.pack(pady=10)
 
     # Botón llamativo
-    btn_ingreso = ttk.Button(frame, text="Ir a ingreso de datos", style="Blue.TButton", command=lambda: [ventana.destroy(), abrir_interfaz()])
+    btn_ingreso = ttk.Button(frame, text="Ir a ingreso de datos", style="Blue.TButton", command=lambda: [ventana_nombres.destroy(), abrir_interfaz()])
     btn_ingreso.pack(pady=20)
 
-    ventana.mainloop()
+    ventana_nombres.mainloop()
 
 def abrir_interfaz():
-    root = tk.Tk()
-    root.configure(bg="#f0f4f8")
-    root.title("Simulación de Trayectoria de la Bomba")
+    ventana_datos = tk.Tk()
+    ventana_datos.configure(bg="#f0f4f8")
+    ventana_datos.title("Simulación de Trayectoria de la Bomba")
 
     # Configurar el tamaño de la ventana
-    root.geometry("600x650")  
-    root.resizable(False, False)
+    ventana_datos.geometry("600x650")  
+    ventana_datos.resizable(False, False)
 
     # Estilo
     style = ttk.Style()
     style.theme_use("default") 
     style.configure("Blue.TLabel", background="#f0f4f8", foreground="#003366", font=("Arial", 10))
     style.configure("Blue.TButton", background="#003366", foreground="white", font=("Arial", 10, "bold"))
-    style.map("Blue.TButton", background=[("active", "#00509e")])  # Color al hacer clic
+    style.map("Blue.TButton", background=[("active", "#00509e")]) 
     style.configure("Blue.TFrame", background="#f0f4f8")
 
     # Título
     titulo = tk.Label(
-        root,
+        ventana_datos,
         text="Simulación de la trayectoria de la bomba",
         font=("Arial", 16, "bold"),
         bg="#f0f4f8",
@@ -95,14 +95,14 @@ def abrir_interfaz():
         img_tk = ImageTk.PhotoImage(img)
 
         # Mostrar la imagen en la interfaz
-        img_label = tk.Label(root, image=img_tk, bg="#f0f4f8")
+        img_label = tk.Label(ventana_datos, image=img_tk, bg="#f0f4f8")
         img_label.image = img_tk  # Mantener referencia para evitar recolección de basura
         img_label.pack(pady=(5, 5))
     except Exception as e:
         messagebox.showerror("Error", f"No se pudo cargar la imagen: {e}")
 
     texto_datos = tk.Label(
-        root,
+        ventana_datos,
         text="Por favor, ingrese los datos requeridos:",
         font=("Arial", 14, "bold"),
         bg="#f0f4f8",
@@ -119,7 +119,7 @@ def abrir_interfaz():
     longitud = tk.StringVar()
 
     # Frame para entradas
-    frame = ttk.Frame(root, style="Blue.TFrame")
+    frame = ttk.Frame(ventana_datos, style="Blue.TFrame")
     frame.pack(pady=3)
 
     # Etiquetas y campos de entrada
@@ -164,7 +164,7 @@ def abrir_interfaz():
             if L <= 0:
                 raise ValueError("La longitud del cañón debe ser mayor que 0.")
 
-            root.withdraw()
+            ventana_datos.withdraw()
             # Llamar a la siguiente ventana
             mostrar_resultados(v, ha, hc, alpha, d, L)
 
@@ -172,7 +172,7 @@ def abrir_interfaz():
             messagebox.showerror("Error", f"Entrada inválida: {e}")
 
     # Botón "Siguiente"
-    ttk.Button(root, text="Siguiente", command=procesar_datos, style="Blue.TButton").pack(pady=30)
+    ttk.Button(ventana_datos, text="Siguiente", command=procesar_datos, style="Blue.TButton").pack(pady=30)
 
     # Iniciar aplicación
-    root.mainloop()
+    ventana_datos.mainloop()
